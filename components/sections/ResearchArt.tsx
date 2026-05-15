@@ -101,9 +101,6 @@ export function SoCDieArt() {
         <text x="44" y="25" textAnchor="middle" fontSize="6" fill="white" fontFamily="monospace">µW always-on</text>
       </g>
 
-      <text x="200" y="213" textAnchor="middle" fontSize="6" fill="#888" fontFamily="monospace" opacity="0.75">
-        Fig. 1 — Heterogeneous SoC: chiplet + 3D-HBM + CIM, integrated through NoC fabric
-      </text>
     </svg>
   );
 }
@@ -208,9 +205,6 @@ export function AIAttentionArt() {
         <text x="50" y="10" textAnchor="middle" fontSize="6.5" fill="#00D4FF" fontFamily="monospace">Sparse Attention · 90%</text>
       </g>
 
-      <text x="200" y="215" textAnchor="middle" fontSize="6" fill="#888" fontFamily="monospace" opacity="0.75">
-        Fig. 2 — Sparse attention engine + 8×8 INT4 systolic array (schematic)
-      </text>
     </svg>
   );
 }
@@ -296,9 +290,6 @@ export function ArchPipelineArt() {
         <line x1="168" y1="106" x2="168" y2="152" />
       </g>
 
-      <text x="200" y="213" textAnchor="middle" fontSize="6" fill="#888" fontFamily="monospace" opacity="0.75">
-        Fig. 3 — RV64GCV 4-wide OoO core: pipeline · branch predictor · in-core caches
-      </text>
     </svg>
   );
 }
@@ -363,9 +354,6 @@ export function QuantumStackArt() {
         <line x1="145" y1="60" x2="145" y2="180" />
       </g>
 
-      <text x="200" y="213" textAnchor="middle" fontSize="6" fill="#888" fontFamily="monospace" opacity="0.75">
-        Fig. 4 — Cryo-CMOS qubit controller stack with 8-channel 1 mW driver (schematic)
-      </text>
     </svg>
   );
 }

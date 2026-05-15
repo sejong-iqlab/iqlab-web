@@ -125,27 +125,30 @@ const SECTIONS: Area[] = [
 //
 // 자세한 가이드는 MAINTENANCE.md 의 "Research figure 사진 추가" 절 참고.
 // ----------------------------------------------------------------------------
+// label / caption 은 라이트박스에서만 노출됩니다 (카드에는 번호 배지만 표시).
+// 비워두면 자동으로 `Figure 1`, `Figure 2`... 로 표시됩니다.
+// 정확한 설명이 정해지면 항목별로 `label` / `caption` 을 채워 넣으세요.
 const PHOTOS_BY_NO: Partial<Record<string, ResearchPhoto[]>> = {
   '01': [
-    { src: '/research/transformer_1.png', label: 'Variable Systolic Array' },
-    { src: '/research/transformer_2.png', label: 'NPU Virtualization' },
-    { src: '/research/transformer_3.png', label: 'Scheduler Architecture' },
-    { src: '/research/transformer_4.png', label: 'Dataflow' },
-    { src: '/research/transformer_5.png', label: 'In-Memory MatMul' },
-    { src: '/research/transformer_6.png', label: 'Measured Results' },
+    { src: '/research/transformer_1.png' },
+    { src: '/research/transformer_2.png' },
+    { src: '/research/transformer_3.png' },
+    { src: '/research/transformer_4.png' },
+    { src: '/research/transformer_5.png' },
+    { src: '/research/transformer_6.png' },
   ],
   '02': [
-    { src: '/research/cal_1.gif', label: 'Sensor SoC Block' },
-    { src: '/research/cal_2.gif', label: 'Envelope / ToF Detector' },
-    { src: '/research/cal_3.gif', label: '2D Polynomial Calibration' },
+    { src: '/research/cal_1.gif' },
+    { src: '/research/cal_2.gif' },
+    { src: '/research/cal_3.gif' },
   ],
   '03': [
-    { src: '/research/neuromorphic_1.png', label: 'UREN Router' },
-    { src: '/research/neuromorphic_2.png', label: 'Star-topology NoC' },
-    { src: '/research/neuromorphic_3.png', label: 'STDP On-chip Learning' },
-    { src: '/research/neuromorphic_4.png', label: 'Refractory Control' },
-    { src: '/research/neuromorphic_5.png', label: 'Samsung 28 nm Chip' },
-    { src: '/research/neuromorphic_6.png', label: 'Measured Results' },
+    { src: '/research/neuromorphic_1.png' },
+    { src: '/research/neuromorphic_2.png' },
+    { src: '/research/neuromorphic_3.png' },
+    { src: '/research/neuromorphic_4.png' },
+    { src: '/research/neuromorphic_5.png' },
+    { src: '/research/neuromorphic_6.png' },
   ],
 };
 
