@@ -682,124 +682,130 @@ export default function MembersSection() {
             </Card>
           </div>
         </div>
-
-        {/* ============ 02 RESEARCHERS ============ */} 
-       <div>
-          <ChapterHeader title="Researchers" accent="#00D4FF" />
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {RESEARCHERS.map((p) => (
-              <button
-                key={p.id}
-                onClick={() => setSelectedAlumni(p as any)}
-                className="text-center group"
+     {/* ============ 02 RESEARCHERS ============ */} 
+      <div>
+        <ChapterHeader title="Researchers" accent="#00D4FF" />
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {RESEARCHERS.map((p) => (
+            <button
+              key={p.id}
+              onClick={() => setSelectedResearcher(p)}
+              className="text-center group"
+            >
+              <Card
+                accent={`${p.accent}30`}
+                className="hover:border-white/30 transition cursor-pointer h-full text-center"
               >
-                <Card
-                  accent={`${p.accent}30`}
-                  className="hover:border-white/30 transition cursor-pointer h-full text-center"
+                <div
+                  className="w-full aspect-[4/5] rounded-md mb-3 overflow-hidden border border-white/5 flex items-center justify-center"
+                  style={{
+                    boxShadow: `0 4px 18px ${p.accent}25`,
+                    background: p.photo
+                      ? '#0a0a12'
+                      : `linear-gradient(135deg, rgba(0,122,255,0.18), rgba(20,20,30,0.6))`,
+                  }}
                 >
-                  <div
-                    className="w-full aspect-[4/5] rounded-md mb-3 overflow-hidden border border-white/5 flex items-center justify-center"
-                    style={{
-                      boxShadow: `0 4px 18px ${p.accent}25`,
-                      background: p.photo
-                        ? '#0a0a12'
-                        : `linear-gradient(135deg, rgba(0,122,255,0.18), rgba(20,20,30,0.6))`,
-                    }}
-                  >
-                    {p.photo ? (
-                      <img
-                        src={asset(p.photo)}
-                        alt={p.name}
-                        className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
-                      />
-                    ) : (
-                      <span
-                        className="text-3xl font-mono font-bold"
-                        style={{ color: `${p.accent}88` }}
-                      >
-                        {p.name
-                          .split(' ')
-                          .map((s) => s[0])
-                          .join('')}
-                      </span>
-                    )}
-                  </div>
-                  <h4 className="text-base font-bold text-white group-hover:text-cyan-300 transition leading-tight">
-                    {p.name}
-                  </h4>
-                  <p className="text-[11px] font-mono mt-1" style={{ color: p.accent }}>
-                    {p.grade}
-                  </p>
-                </Card>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* ============ 03 ALUMNI ============ */}
-        <div>
-          <ChapterHeader title="Alumni" accent="#FF9500" />
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {ALUMNI.map((a) => (
-              <button
-                key={a.id}
-                onClick={() => setSelectedAlumni(a)}
-                className="text-center group"
-              >
-                <Card
-                  accent={`${a.accent}30`}
-                  className="hover:border-white/30 transition cursor-pointer h-full text-center"
-                >
-                  <div
-                    className="w-full aspect-[4/5] rounded-md mb-3 overflow-hidden border border-white/5 flex items-center justify-center"
-                    style={{
-                      boxShadow: `0 4px 18px ${a.accent}25`,
-                      background: a.photo
-                        ? '#0a0a12'
-                        : 'linear-gradient(135deg, rgba(255,149,0,0.18), rgba(20,20,30,0.6))',
-                    }}
-                  >
-                    {a.photo ? (
-                      /* eslint-disable-next-line @next/next/no-img-element */
-                      <img
-                        src={asset(a.photo)}
-                        alt={a.name}
-                        className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
-                      />
-                    ) : (
-                      <span
-                        className="text-3xl font-mono font-bold"
-                        style={{ color: `${a.accent}88` }}
-                      >
-                        {a.name
-                          .split(' ')
-                          .map((s) => s[0])
-                          .join('')}
-                      </span>
-                    )}
-                  </div>
-                  <h4 className="text-base font-bold text-white group-hover:text-orange-300 transition leading-tight">
-                    {a.name}
-                  </h4>
-                  <p className="text-[11px] font-mono mt-1" style={{ color: a.accent }}>
-                    {a.grade} · Grad {a.graduation}
-                  </p>
-                  <p className="text-[11px] font-mono text-gray-400 mt-0.5">
-                    {a.company}
-                  </p>
-                </Card>
-              </button>
-            ))}
-          </div>
+                  {p.photo ? (
+                    <img
+                      src={asset(p.photo)}
+                      alt={p.name}
+                      className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                    />
+                  ) : (
+                    <span
+                      className="text-3xl font-mono font-bold"
+                      style={{ color: `${p.accent}88` }}
+                    >
+                      {p.name
+                        .split(' ')
+                        .map((s) => s[0])
+                        .join('')}
+                    </span>
+                  )}
+                </div>
+                <h4 className="text-base font-bold text-white group-hover:text-cyan-300 transition leading-tight">
+                  {p.name}
+                </h4>
+                <p className="text-[11px] font-mono mt-1" style={{ color: p.accent }}>
+                  {p.grade}
+                </p>
+              </Card>
+            </button>
+          ))}
         </div>
       </div>
 
-      {selectedAlumni && (
-        <AlumniDetailModal
-          alumni={selectedAlumni}
-          onClose={() => setSelectedAlumni(null)}
-        />
-      )}
-    </SectionShell>
+      {/* ============ 03 ALUMNI ============ */}
+      <div>
+        <ChapterHeader title="Alumni" accent="#FF9500" />
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {ALUMNI.map((a) => (
+            <button
+              key={a.id}
+              onClick={() => setSelectedAlumni(a)}
+              className="text-center group"
+            >
+              <Card
+                accent={`${a.accent}30`}
+                className="hover:border-white/30 transition cursor-pointer h-full text-center"
+              >
+                <div
+                  className="w-full aspect-[4/5] rounded-md mb-3 overflow-hidden border border-white/5 flex items-center justify-center"
+                  style={{
+                    boxShadow: `0 4px 18px ${a.accent}25`,
+                    background: a.photo
+                      ? '#0a0a12'
+                      : 'linear-gradient(135deg, rgba(255,149,0,0.18), rgba(20,20,30,0.6))',
+                  }}
+                >
+                  {a.photo ? (
+                    <img
+                      src={asset(a.photo)}
+                      alt={a.name}
+                      className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                    />
+                  ) : (
+                    <span
+                      className="text-3xl font-mono font-bold"
+                      style={{ color: `${a.accent}88` }}
+                    >
+                      {a.name
+                        .split(' ')
+                        .map((s) => s[0])
+                        .join('')}
+                    </span>
+                  )}
+                </div>
+                <h4 className="text-base font-bold text-white group-hover:text-orange-300 transition leading-tight">
+                  {a.name}
+                </h4>
+                <p className="text-[11px] font-mono mt-1" style={{ color: a.accent }}>
+                  {a.grade} · Grad {a.graduation}
+                </p>
+                <p className="text-[11px] font-mono text-gray-400 mt-0.5">
+                  {a.company}
+                </p>
+              </Card>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    {selectedAlumni && (
+      <AlumniDetailModal
+        alumni={selectedAlumni}
+        onClose={() => setSelectedAlumni(null)}
+      />
+    )}
+
+    {selectedResearcher && (
+      <ResearcherDetailModal
+        researcher={selectedResearcher}
+        onClose={() => setSelectedResearcher(null)}
+      />
+    )}
+  </SectionShell>
+
   );
 }
