@@ -492,6 +492,57 @@ function AlumniDetailModal({
   );
 }
 
+function ResearcherDetailModal({ researcher, onClose }: ResearcherDetailModalProps) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onClick={onClose}>
+      <div className="relative w-full max-w-2xl bg-[#0c0c14] border border-white/10 rounded-xl p-6 overflow-hidden" onClick={(e) => e.stopPropagation()}>
+        <div className="absolute top-4 right-4">
+          <button onClick={onClose} className="text-gray-400 hover:text-white text-xl">&times;</button>
+        </div>
+        <div className="flex flex-col md:flex-row gap-6">
+          <div className="w-full md:w-48 aspect-[4/5] rounded-lg overflow-hidden border border-white/5 bg-gradient-to-br from-cyan-900/20 to-black flex items-center justify-center flex-shrink-0">
+            {researcher.photo ? (
+              <img src={(window as any).asset ? (window as any).asset(researcher.photo) : researcher.photo} alt={researcher.name} className="w-full h-full object-contain" />
+            ) : (
+              <span className="text-4xl font-mono font-bold" style={{ color: `${researcher.accent}88` }}>
+                {researcher.name.split(' ').map((s) => s[0]).join('')}
+              </span>
+            )}
+          </div>
+          <div className="flex-1 flex flex-col justify-between">
+            <div className="space-y-4">
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-1">{researcher.name}</h3>
+                <p className="text-sm leading-relaxed">
+                  <span className="font-bold text-white">{researcher.grade}</span>
+                  <span className="text-gray-300">, Sejong University.</span>
+                </p>
+              </div>
+              {researcher.researchInterests && researcher.researchInterests.length > 0 && (
+                <div>
+                  <h4 className="text-xs font-mono uppercase tracking-wider text-gray-500 mb-1.5">Research Interests</h4>
+                  <ul className="list-disc list-inside text-sm text-gray-300 space-y-1">
+                    {researcher.researchInterests.map((interest, idx) => (
+                      <li key={idx}>{interest}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+            {researcher.email && (
+              <div className="mt-6 pt-4 border-t border-white/5">
+                <h4 className="text-xs font-mono uppercase tracking-wider text-gray-500 mb-1">Email</h4>
+                <a href={`mailto:${researcher.email}`} className="text-sm font-mono text-cyan-400 hover:underline break-all">{researcher.email}</a>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
 export default function MembersSection() {
   const [selectedAlumni, setSelectedAlumni] = useState<Alumni | null>(null);
   const [selectedResearcher, setSelectedResearcher] = useState<any>(null);
@@ -801,8 +852,8 @@ export default function MembersSection() {
     )}
 
 {selectedResearcher && (
-      <AlumniDetailModal
-        alumni={selectedResearcher}
+      <ResearcherDetailModal
+        researcher={selectedResearcher}
         onClose={() => setSelectedResearcher(null)}
       />
     )}
