@@ -103,7 +103,7 @@ const RESEARCHERS: Researcher[] = [
     email: 'wkdtjrdn1223@gmail.com', 
     researchInterests: ['Transformer AI Accelerator'],
     accent: RESEARCHERS_ACCENT,
-  },
+ },
  { 
     id: 'ji-hoon-yang',
     name: 'Ji Hoon Yang', 
@@ -112,6 +112,7 @@ const RESEARCHERS: Researcher[] = [
     email: 'wkdtjrdn1223@gmail.com',
     researchInterests: ['Transformer AI Accelerator'],
     accent: RESEARCHERS_ACCENT,
+  },
   { 
     id: 'sung-kyun-sin',
     name: 'Sung Kyun Sin', 
