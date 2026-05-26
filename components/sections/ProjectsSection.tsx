@@ -198,7 +198,7 @@ function ProjectDetailModal({
       <img
         src={asset(project.image)}
         alt={`${project.title} image`}
-        className="w-full h-auto object-contain max-h-[300px] mx-auto"
+        className="w-full h-auto object-contain max-h-[600px] mx-auto"
       />
     </div>
   </div>
