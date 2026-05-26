@@ -800,7 +800,7 @@ export default function MembersSection() {
       />
     )}
 
-    {selectedResearcher && (
+{selectedResearcher && (
       <AlumniDetailModal
         alumni={selectedResearcher}
         onClose={() => setSelectedResearcher(null)}
