@@ -204,8 +204,7 @@ const ALUMNI: Alumni[] = [
       },
       { degree: 'B.S.', org: 'Sejong University', period: '2024' },
     ],
-    researchInterests: ['Homomorphic Encryption Accelerator
-Post-Quantum Cryptography Accelerator'],
+    researchInterests: ['Homomorphic Encryption Accelerator'],
     accent: ALUMNI_ACCENT,
   },
   {
