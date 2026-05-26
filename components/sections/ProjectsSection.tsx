@@ -11,6 +11,7 @@ type Project = {
   agency: string;
   program: string;
   description?: string;
+  image?: string;
 };
 
 type Chip = {
@@ -33,7 +34,14 @@ const PROJECTS: Project[] = [
     period: '2024.07 – 2031.12',
     agency: 'IITP',
     program: '정보통신방송혁신인재양성사업',
-    description : '블라블라',
+    description : ' 
+`자동차, 스마트기기, 휴머노이드 등 독립된 환경 또는 네트워크로 연결된 센서 융합 스마트디바이스의 인공지능 추론과 부분 학습이 가능한 온디바이스 AI 반도체 핵심 설계 기술 및 플랫폼 개발
+• 온디바이스 센싱/연결/추론/학습 (SCIL:Sensing/Connecting/Inferencing/Learning) 통합 인공지능 반도체 설계 및 플랫폼 원천기술 개발
+• (1세부) 온디바이스 AI 반도체용 핵심 IP 및 온디바이스 AI 융합 센서 기술
+• (2세부) 초연결 센서 융합 온디바이스 인공지능 반도체 첨단 패키지 기술
+• (3세부) 초연결 네트워크 및 정보통신 융합 AI 컴퓨팅 및 센싱 플랫폼
+• (4세부) 모빌리티 및 의료용 온디바이스 AI 반도체 적용 기술`,
+  image: '/projects/project01.jpg'
   },
   {
     no: '02',
@@ -183,6 +191,19 @@ function ProjectDetailModal({
               <p className="text-xs text-gray-400">Program Name</p>
               <p className="text-gray-200">{project.program}</p>
             </div>
+            {project.image && (
+  <div>
+    <p className="text-xs text-gray-400 mb-1.5">Project Image</p>
+    <div className="w-full overflow-hidden rounded-lg border border-white/10 bg-[#0a0a12]">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={asset(project.image)}
+        alt={`${project.title} image`}
+        className="w-full h-auto object-contain max-h-[300px] mx-auto"
+      />
+    </div>
+  </div>
+)}
             {project.description && (
               <div>
                 <p className="text-xs text-gray-400 mb-1">Research Overview</p>
