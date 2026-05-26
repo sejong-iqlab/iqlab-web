@@ -86,8 +86,18 @@ const SERVICE: string[] = [
   '반도체공학회 주요 위원',
 ];
 
+const RESEARCHERS_ACCENT = '#007AFF';
+
 const RESEARCHERS: Researcher[] = [
-  { name: 'Ui Seok Jeong', grade: 'M.S.' },
+  { 
+    id : 'ui-seok-jeong',
+    name: 'Ui Seok Jeong',
+    grade: 'B.S.',
+    photo: '/members/seokwoo-chang.jpg',
+    email: 'wkdtjrdn1223@gmail.com', 
+    researchInterests: ['Transformer AI Accelerator'],
+    accent: RESEARCHERS_ACCENT,
+  },
   { name: 'Ji Hoon Yang', grade: 'M.S.' },
   { name: 'Sung Kyun Sin', grade: 'M.S.' },
   { name: 'Min Jae Kwak', grade: 'M.S.' },
