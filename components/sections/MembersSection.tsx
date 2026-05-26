@@ -492,56 +492,114 @@ function AlumniDetailModal({
   );
 }
 
-function ResearcherDetailModal({ researcher, onClose }: ResearcherDetailModalProps) {
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onClick={onClose}>
-      <div className="relative w-full max-w-2xl bg-[#0c0c14] border border-white/10 rounded-xl p-6 overflow-hidden" onClick={(e) => e.stopPropagation()}>
-        <div className="absolute top-4 right-4">
-          <button onClick={onClose} className="text-gray-400 hover:text-white text-xl">&times;</button>
-        </div>
-        <div className="flex flex-col md:flex-row gap-6">
-          <div className="w-full md:w-48 aspect-[4/5] rounded-lg overflow-hidden border border-white/5 bg-gradient-to-br from-cyan-900/20 to-black flex items-center justify-center flex-shrink-0">
-            {researcher.photo ? (
-              <img src={(window as any).asset ? (window as any).asset(researcher.photo) : researcher.photo} alt={researcher.name} className="w-full h-full object-contain" />
-            ) : (
-              <span className="text-4xl font-mono font-bold" style={{ color: `${researcher.accent}88` }}>
-                {researcher.name.split(' ').map((s) => s[0]).join('')}
-              </span>
-            )}
-          </div>
-          <div className="flex-1 flex flex-col justify-between">
-            <div className="space-y-4">
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-1">{researcher.name}</h3>
-                <p className="text-sm leading-relaxed">
-                  <span className="font-bold text-white">{researcher.grade}</span>
-                  <span className="text-gray-300">, Sejong University.</span>
-                </p>
-              </div>
-              {researcher.researchInterests && researcher.researchInterests.length > 0 && (
-                <div>
-                  <h4 className="text-xs font-mono uppercase tracking-wider text-gray-500 mb-1.5">Research Interests</h4>
-                  <ul className="list-disc list-inside text-sm text-gray-300 space-y-1">
-                    {researcher.researchInterests.map((interest, idx) => (
-                      <li key={idx}>{interest}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-            {researcher.email && (
-              <div className="mt-6 pt-4 border-t border-white/5">
-                <h4 className="text-xs font-mono uppercase tracking-wider text-gray-500 mb-1">Email</h4>
-                <a href={`mailto:${researcher.email}`} className="text-sm font-mono text-cyan-400 hover:underline break-all">{researcher.email}</a>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+function ResearcherDetailModal({
+  researcher,
+  onClose,
+}: {
+  researcher: any;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [onClose]);
 
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+      style={{
+        background: 'rgba(2, 6, 14, 0.85)',
+        backdropFilter: 'blur(8px)',
+        WebkitBackdropFilter: 'blur(8px)',
+        animation: 'fadeIn 0.2s ease-out',
+      }}
+      onClick={onClose}
+    >
+      <div
+        className="relative w-full max-w-3xl rounded-xl overflow-hidden border border-white/10"
+        style={{
+          background:
+            'linear-gradient(135deg, rgba(20,20,30,0.96) 0%, rgba(10,12,20,0.96) 50%, rgba(30,20,15,0.96) 100%)',
+          boxShadow: `0 30px 80px rgba(0,0,0,0.6), 0 0 60px ${researcher.accent}30`,
+          animation: 'scaleIn 0.25s ease-out',
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Close button */}
+        <button
+          aria-label="Close"
+          onClick={onClose}
+          className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center rounded-full text-white/70 hover:text-white hover:bg-white/10 transition"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <line x1="6" y1="6" x2="18" y2="18" />
+            <line x1="18" y1="6" x2="6" y2="18" />
+          </svg>
+        </button>
+
+        <div className="grid md:grid-cols-[280px_1fr] gap-0">
+          {/* Left: photo + email */}
+          <div className="p-6 md:p-8 flex flex-col items-center md:items-start">
+            {researcher.photo ? (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img
+                src={asset(researcher.photo)}
+                alt={researcher.name}
+                className="w-full h-auto rounded-xl border border-white/10 mb-4 block"
+                style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.5)' }}
+              />
+            ) : (
+              <div
+                className="w-full aspect-square rounded-xl border border-white/10 mb-4 flex items-center justify-center"
+                style={{
+                  background:
+                    'linear-gradient(135deg, rgba(0,212,255,0.15), rgba(20,20,30,0.6))',
+                  boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+                }}
+              >
+                <span
+                  className="text-5xl font-mono font-bold"
+                  style={{ color: `${researcher.accent}88` }}
+                >
+                  {researcher.name
+                    .split(' ')
+                    .map((s: string) => s[0])
+                    .join('')}
+                </span>
+              </div>
+            )}
+            {researcher.email && (
+              <div className="w-full">
+                <p className="text-[11px] font-bold text-white mb-1">Email</p>
+                <a
+                  href={`mailto:${researcher.email}`}
+                  className="text-[12px] text-gray-400 hover:text-white transition font-mono break-all"
+                >
+                  {researcher.email}
+                </a>
+              </div>
+            )}
+          </div>
+
+          {/* Right: details */}
+          <div className="p-6 md:p-8 md:pl-2 md:pr-12">
+            <h2
+              className="text-3xl md:text-4xl font-extrabold mb-5 leading-tight"
+              style={{ color: researcher.accent }}
+            >
+              {researcher.name}
+            </h2>
+
+            <div className="space-y-4">
+              <p className="text-sm leading-relaxed">
+                <span className="font-bold text-white">{
 
 export default function MembersSection() {
   const [selectedAlumni, setSelectedAlumni] = useState<Alumni | null>(null);
