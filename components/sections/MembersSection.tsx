@@ -11,8 +11,14 @@ type Honor = { year: string; title: string; detail?: string };
 type Grade = 'Ph.D.' | 'M.S.' | 'Undergraduate Researcher';
 
 type Researcher = {
+  id: string;
   name: string;
   grade: Grade;
+  photo?: string;
+  email?: string;
+  education?: AlumniEducation[];
+  researchInterests?: string[];
+  accent: string;
 };
 
 type AlumniEducation = { degree: string; org: string; field?: string; period?: string };
