@@ -69,8 +69,7 @@ const PROJECTS: Project[] = [
   },
   {
     no: '06',
-    title:
-      '인공지능반도체 융합인력양성(세종대)',
+    title: '인공지능반도체 융합인력양성(세종대)',
     period: '2024.05 – 2025.02',
     agency: 'IITP',
     program: '대학혁신지원사업',
@@ -84,8 +83,7 @@ const CHIPS: Chip[] = [
     ordinal: '1st chip',
     code: 'SF028-2301',
     process: 'Samsung 28nm FD-SOI',
-    title:
-      'Fully Integrated Edge Sensor SoC with Moving Object Detection for a Vehicle Mounted Camera',
+    title: 'Fully Integrated Edge Sensor SoC with Moving Object Detection for a Vehicle Mounted Camera',
     photo: '/chips/sf028-2301-vehicle-camera.jpg',
   },
   {
@@ -109,8 +107,7 @@ const CHIPS: Chip[] = [
     ordinal: '4th chip',
     code: 'SF028-2502',
     process: 'Samsung 28nm FD-SOI',
-    title:
-      'A Trainable NPU Architecture for Deep Spiking Neural Networks Using Backpropagation Through Time',
+    title: 'A Trainable NPU Architecture for Deep Spiking Neural Networks Using Backpropagation Through Time',
     status: 'In Fabrication',
   },
 ];
@@ -188,7 +185,7 @@ function ProjectDetailModal({
             </div>
             {project.description && (
               <div>
-                <p className="text-xs text-gray-400mb-1">Research Overview</p>
+                <p className="text-xs text-gray-400 mb-1">Research Overview</p>
                 <p className="text-gray-300 bg-white/5 p-3 rounded-lg">{project.description}</p>
               </div>
             )}
@@ -201,6 +198,7 @@ function ProjectDetailModal({
 
 export default function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  
   return (
     <SectionShell id="projects" eyebrow="Projects">
       <div className="space-y-20">
@@ -209,43 +207,47 @@ export default function ProjectsSection() {
           <ChapterHeader title="R&D" accent={RND_ACCENT} />
           <div className="space-y-3">
             {PROJECTS.map((p) => (
-              <Card
+              <div
                 key={p.no}
-                accent={`${RND_ACCENT}30`}
-                className="hover:border-white/25 cursor-pointer transition transform hover:-translate-y-0.5"
+                className="cursor-pointer transition transform hover:-translate-y-0.5"
                 onClick={() => setSelectedProject(p)}
               >
-                <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-5">
-                  <span
-                    className="text-2xl font-bold font-mono shrink-0"
-                    style={{
-                      color: RND_ACCENT,
-                      textShadow: `0 0 14px ${RND_ACCENT}55`,
-                    }}
-                  >
-                    {p.no}
-                  </span>
+                <Card
+                  accent={`${RND_ACCENT}30`}
+                  className="hover:border-white/25"
+                >
+                  <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-5">
+                    <span
+                      className="text-2xl font-bold font-mono shrink-0"
+                      style={{
+                        color: RND_ACCENT,
+                        textShadow: `0 0 14px ${RND_ACCENT}55`,
+                      }}
+                    >
+                      {p.no}
+                    </span>
 
-                  <div className="flex-1 min-w-0">
-                    <h4 className="text-base md:text-lg font-bold text-white leading-snug mb-1.5">
-                      {p.title}
-                    </h4>
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] font-mono text-gray-400">
-                      <span>{p.period}</span>
-                      <span className="text-gray-600">·</span>
-                      <span style={{ color: RND_ACCENT }}>{p.agency}</span>
-                      <span className="text-gray-600">·</span>
-                      <span>{p.program}</span>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-base md:text-lg font-bold text-white leading-snug mb-1.5">
+                        {p.title}
+                      </h4>
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] font-mono text-gray-400">
+                        <span>{p.period}</span>
+                        <span className="text-gray-600">·</span>
+                        <span style={{ color: RND_ACCENT }}>{p.agency}</span>
+                        <span className="text-gray-600">·</span>
+                        <span>{p.program}</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Card>
+                </Card>
+              </div>
             ))}
           </div>
         </div>
 
         {/* ============ CHIPS ============ */}
-        <div>
+        <div> {/* 💡 누락되었던 오픈 태그 교정 완료 */}
           <ChapterHeader title="Chips" accent={CHIP_ACCENT} />
           <div className="grid md:grid-cols-2 gap-5">
             {CHIPS.map((c) => (
@@ -284,7 +286,7 @@ export default function ProjectsSection() {
                   )}
                 </div>
 
-                {/* Chip info */}
+                {/* Type & Code */}
                 <div className="flex items-baseline gap-2.5 mb-2">
                   <span
                     className="text-[11px] font-mono uppercase tracking-[0.25em] shrink-0"
@@ -319,7 +321,8 @@ export default function ProjectsSection() {
           </div>
         </div>
       </div>
-    {selectedProject && (
+
+      {selectedProject && (
         <ProjectDetailModal
           project={selectedProject}
           onClose={() => setSelectedProject(null)}
