@@ -90,7 +90,7 @@ const PROJECTS: Project[] = [
     • NPU 구동 검증을 위한 디버깅 기능 지원 
     • 동작 결과 및 성능 분석을 위한 프로파일러 지원
     • CPU와 NPU 연동을 효율적으로 통합 관리하는 런타임을 포함하는 System SW `,
-    image: '/projects/project04.png',
+    image: '/projects/project04.png'
   },
   {
     no: '05',
