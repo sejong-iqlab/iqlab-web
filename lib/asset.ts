@@ -18,7 +18,7 @@ const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export function asset(path: string | undefined): string | undefined {
   if (!path) return path;
-  if (/^https?:\/\//.test(path)) return path; // 외부 URL은 그대로
-  if (!path.startsWith("/")) return path;     // 상대경로 등은 그대로
-  return path.startsWith(BASE_PATH) ? path : `${BASE_PATH}${path}`;
+  if (/^https?:\/\//.test(path)) return path;
+  if (!path.startsWith("/")) return path;
+  return `${BASE_PATH}${path}`;
 }
